@@ -32,3 +32,47 @@ footer{
 	margin-bottom: 10px;
 	
 }
+
+h1{
+	font-size:24px;
+	font-weight: 505;
+	padding:0px;
+	margin:0px;
+}
+
+
+#loginDialog{
+	width: 290px;
+	margin: auto;
+	margin-top: 150px;
+	
+}
+
+.gridLogin{
+	
+	background-color: #f2f2f2;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	margin-top: 8px;
+	padding: 10px;
+}
+
+#toobarStyle{
+	padding: 2px !important;
+}
+
+.rotulo{
+	width: 150px;
+}
+
+.ui-panelgrid td{
+	height: 34px; 
+}
+
+.ajax-status{
+	position: fixed;
+	top:55px;
+	right: 10px;
+	width: 35px;
+	height: 35px;
+}
