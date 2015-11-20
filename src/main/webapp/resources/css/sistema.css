@@ -65,8 +65,17 @@ h1{
 	width: 150px;
 }
 
+.campo{
+	
+	
+}
+
 .ui-panelgrid td{
 	height: 34px; 
+}
+
+.ui-selectmanycheckbox td label{
+	padding-right: 10px;
 }
 
 .ajax-status{
@@ -76,3 +85,27 @@ h1{
 	width: 35px;
 	height: 35px;
 }
+
+.produto-tabela input{
+	width:99%;
+}
+
+
+/*Customiza tabView - inicio*/
+.ui-tabs .ui-tabs-panel {
+	padding: 0.5em 0.2em !important;
+}
+
+.ui-tabs{
+	padding: 0px !important;
+}
+
+.ui-tabs .ui-tabs-nav{
+	margins: -1px !important;
+}
+
+.ui-tabs.ui-tabs-top > .ui-tabs-nav{
+		padding: 0px !important;
+}
+
+/*Customiza tabView - Fim*/
