@@ -40,6 +40,22 @@ h1{
 	margin:0px;
 }
 
+/* menu customizado do primefaces do sistema */
+.menu-sistema{
+	border: 0px !important;
+	padding: 0px !important;
+	background: none !important;
+}
+
+.menu-sistema .ui-menu-parent > a .ui-menuitem-text, .menu-sistema > .ui-menu-list > .ui-menuitem > a > .ui-menubar .ui-menuitem-link{
+	color: #ffffff !important;
+}
+
+.menu-sistema .ui-icon-triangle-1-s{
+	background; url(#{resource['images:seta-para-baixo.png']}) no-repeat;
+}
+
+/* Fim menu customizado do primefaces do sistema */
 
 #loginDialog{
 	width: 290px;
