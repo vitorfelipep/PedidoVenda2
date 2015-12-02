@@ -7,47 +7,46 @@
   <packaging>war</packaging>
   
   <properties>
-  	<project.build.sourceEnconding>UTF-8</project.build.sourceEnconding>
-  </properties>
-  
-  <dependencies>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		
+		<!-- weld (Implementação do CDI) -->
+		<dependency>
+		    <groupId>org.jboss.weld.servlet</groupId>
+		    <artifactId>weld-servlet</artifactId>
+		    <version>1.1.10.Final</version>
+		</dependency>
 	
-	<!-- weld (Implementação do CDI) -->
-	<dependency>
-	    <groupId>org.jboss.weld.servlet</groupId>
-	    <artifactId>weld-servlet</artifactId>
-	    <version>1.1.10.Final</version>
-	</dependency>
-	
-  	<!-- Mojarra (implementação do JSF 2) -->
-	<dependency>
-		<groupId>org.glassfish</groupId>
-		<artifactId>javax.faces</artifactId>
-		<version>2.1.21</version>
-		<scope>compile</scope>
-	</dependency>
-	
-	<!-- PrimeFaces (biblioteca de componentes) -->
+		<!-- Mojarra (implementação do JSF 2) -->
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.faces</artifactId>
+			<version>2.1.17</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- PrimeFaces (biblioteca de componentes) -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>5.2</version>
 			<scope>compile</scope>
 		</dependency>
-  </dependencies>
-  
-  <build>
-  	<finalName>PedidoVenda</finalName>
-  	<plugins>
-  		<plugin>
-  			<artifactId>maven-compiler-plugin</artifactId>
-  			<version>3.0</version>
-  			<configuration>
-  				<source>1.7</source>
-  				<target>1.7</target>
-  			</configuration>
-  		</plugin>
-  	</plugins>
-  </build>
-  
+	</dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

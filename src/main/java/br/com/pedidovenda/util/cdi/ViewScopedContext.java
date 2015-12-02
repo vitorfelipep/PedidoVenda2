@@ -1,4 +1,4 @@
-package br.com.algaworks.util.cdi;
+package br.com.pedidovenda.util.cdi;
 
 import java.lang.annotation.Annotation;
 import java.util.Map;
@@ -17,7 +17,7 @@ import javax.faces.event.SystemEventListener;
 /**
  * Copied from Seam Faces 3.1.0.
  *
- * @author Steve Taylor
+ * @author Steve Taylor 
  */
 public class ViewScopedContext implements Context, SystemEventListener
 {
@@ -25,7 +25,7 @@ public class ViewScopedContext implements Context, SystemEventListener
 	public <T> T get(final Contextual<T> component)
 	{
 		assertActive();
-
+ 
 		if (!isJsfSubscribed)
 		{
 			FacesContext.getCurrentInstance().getApplication().subscribeToEvent(PreDestroyViewMapEvent.class, this);

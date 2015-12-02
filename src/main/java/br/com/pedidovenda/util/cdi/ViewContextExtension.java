@@ -1,4 +1,5 @@
-package br.com.algaworks.util.cdi;
+package br.com.pedidovenda.util.cdi;
+
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.spi.AfterBeanDiscovery;
 import javax.enterprise.inject.spi.BeforeBeanDiscovery;
@@ -8,7 +9,7 @@ import javax.faces.bean.ViewScoped;
 /**
  * Copied from Seam Faces 3.1.0.
  *
- * @author Steve Taylor
+ * @author Steve Taylor 
  */
 public class ViewContextExtension implements Extension
 {

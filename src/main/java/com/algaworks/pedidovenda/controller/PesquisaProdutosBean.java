@@ -4,11 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
 @Named
-@ViewScoped
+@SessionScoped
 public class PesquisaProdutosBean implements Serializable{
 	
 	

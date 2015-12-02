@@ -3,16 +3,16 @@ package com.algaworks.pedidovenda.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 
-@ManagedBean
-@ViewScoped
+@Named
+@RequestScoped
 public class CadastroPedidoBean {
 	
 	private  List<Integer> itens;
 	
-	public CadastroPedidoBean() {
+	public CadastroPedidoBean() { 
 		
 		itens = new ArrayList<>();
 		for(int i = 0; i<50; i++){
