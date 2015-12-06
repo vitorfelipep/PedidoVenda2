@@ -3,6 +3,7 @@ package br.com.pedidovenda.util.cdi;
 import java.lang.annotation.Annotation;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
 import javax.enterprise.context.ContextNotActiveException;
 import javax.enterprise.context.spi.Context;
 import javax.enterprise.context.spi.Contextual;
@@ -21,6 +22,7 @@ import javax.faces.event.SystemEventListener;
  */
 public class ViewScopedContext implements Context, SystemEventListener
 {
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T get(final Contextual<T> component)
 	{
@@ -37,6 +39,7 @@ public class ViewScopedContext implements Context, SystemEventListener
 		return instance;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T get(final Contextual<T> component, final CreationalContext<T> creationalContext)
 	{
@@ -107,6 +110,7 @@ public class ViewScopedContext implements Context, SystemEventListener
 	 *
 	 * @see javax.faces.event.SystemEventListener#processEvent(javax.faces.event.SystemEvent)
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void processEvent(final SystemEvent event)
 	{

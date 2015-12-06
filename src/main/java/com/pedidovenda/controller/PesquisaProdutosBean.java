@@ -1,4 +1,4 @@
-package com.algaworks.pedidovenda.controller;
+package com.pedidovenda.controller;
 
 import java.io.Serializable;
 import java.util.ArrayList;

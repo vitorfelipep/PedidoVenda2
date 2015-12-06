@@ -1,4 +1,4 @@
-package com.algaworks.pedidovenda.controller;
+package com.pedidovenda.controller;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
