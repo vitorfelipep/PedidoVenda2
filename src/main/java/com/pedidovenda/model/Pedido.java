@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "pedido")
@@ -40,7 +41,7 @@ public class Pedido implements Serializable {
 	private Cliente cliente;
 	private EnderecoEntrega enderecoEntrega;
 	private List<ItemPedido> itemPedido = new ArrayList<ItemPedido>();
-	
+
 	@Id
 	@GeneratedValue
 	public Long getId() {
@@ -50,16 +51,19 @@ public class Pedido implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "data_criacao", nullable = false)
 	public Date getDataCriacao() {
 		return dataCriacao;
-	} 
+	}
 
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
-	@Column(columnDefinition = "text",nullable = false)
+
+	@Column(columnDefinition = "text", nullable = false)
 	public String getObservacao() {
 		return observacao;
 	}
@@ -67,6 +71,8 @@ public class Pedido implements Serializable {
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
+
+	@NotNull
 	@Temporal(TemporalType.DATE)
 	@Column(name = "data_entrega", nullable = false)
 	public Date getDataEntrega() {
@@ -76,6 +82,8 @@ public class Pedido implements Serializable {
 	public void setDataEntrega(Date dataEntrega) {
 		this.dataEntrega = dataEntrega;
 	}
+
+	@NotNull
 	@Column(name = "valor_frete", nullable = false, precision = 10, scale = 2)
 	public BigDecimal getValorFrete() {
 		return valorFrete;
@@ -84,6 +92,8 @@ public class Pedido implements Serializable {
 	public void setValorFrete(BigDecimal valorFrete) {
 		this.valorFrete = valorFrete;
 	}
+
+	@NotNull
 	@Column(name = "valor_desconto", nullable = false, precision = 10, scale = 2)
 	public BigDecimal getValorDesconto() {
 		return valorDesconto;
@@ -92,6 +102,8 @@ public class Pedido implements Serializable {
 	public void setValorDesconto(BigDecimal valorDesconto) {
 		this.valorDesconto = valorDesconto;
 	}
+
+	@NotNull
 	@Column(name = "valor_total", nullable = false, precision = 10, scale = 2)
 	public BigDecimal getValorTotal() {
 		return valorTotal;
@@ -100,6 +112,8 @@ public class Pedido implements Serializable {
 	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
 	}
+
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 20)
 	public StatusPedido getStatus() {
@@ -109,6 +123,8 @@ public class Pedido implements Serializable {
 	public void setStatus(StatusPedido status) {
 		this.status = status;
 	}
+
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(name = "forma_pagamento", nullable = false, length = 20)
 	public FormaPagamento getFormaPagamento() {
@@ -118,6 +134,8 @@ public class Pedido implements Serializable {
 	public void setFormaPagamento(FormaPagamento formaPagamento) {
 		this.formaPagamento = formaPagamento;
 	}
+
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "vendedor_id", nullable = false)
 	public Usuario getVendedor() {
@@ -127,6 +145,8 @@ public class Pedido implements Serializable {
 	public void setVendedor(Usuario vendedor) {
 		this.vendedor = vendedor;
 	}
+
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "cliente_id", nullable = false)
 	public Cliente getCliente() {
@@ -136,6 +156,8 @@ public class Pedido implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	
+	
 	@Embedded
 	public EnderecoEntrega getEnderecoEntrega() {
 		return enderecoEntrega;
@@ -144,7 +166,7 @@ public class Pedido implements Serializable {
 	public void setEnderecoEntrega(EnderecoEntrega enderecoEntrega) {
 		this.enderecoEntrega = enderecoEntrega;
 	}
-	
+
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
 	public List<ItemPedido> getItemPedido() {
 		return itemPedido;

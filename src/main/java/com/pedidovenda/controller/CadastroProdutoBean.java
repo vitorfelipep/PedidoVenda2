@@ -1,13 +1,29 @@
 package com.pedidovenda.controller;
 
-import javax.enterprise.context.RequestScoped;
+import java.io.Serializable;
+
+import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import com.pedidovenda.model.Produto;
+
 @Named
-@RequestScoped
-public class CadastroProdutoBean {
+@ViewScoped
+public class CadastroProdutoBean implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	private Produto produto;
+	
+	public CadastroProdutoBean() {
+		produto = new Produto();
+	}
 	
 	public void cadastrar(){
-		throw new RuntimeException("Teste de aplicação");
+		System.out.println(produto.getQuantidadeEstoque());
 	}
+	public Produto getProduto() {
+		return produto;
+	}
+	
+	
 }

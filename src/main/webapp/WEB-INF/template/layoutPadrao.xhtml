@@ -22,35 +22,35 @@
 		</p:dialog>
 		
 		<header>
-			<div style="float:left">
-				<h:link outcome="/home">
-					<h:graphicImage library="imagens" name="logo-algaworks.png"/>
+			<div style="float: left">
+				<h:link outcome="/index">
+					<h:graphicImage library="imagens" name="logo-algaworks.png" />
 				</h:link>
 			</div>
-			<div style="float:right; margin-right: 110px;">
-				<span style="float:left; height: 8px; line-height: 30px; margin-left: 60px;">
-					Olá Usuário!
+			
+			<div style="float: right; margin-right: 110px">
+				<span style="float: left; height: 30px; line-height: 30px; margin-right: 60px">
+				Olá usuário!
 				</span>
-				<h:form style="display: inline-block;margin-left: 35px;">
+				
+				<h:form style="display: inline-block">
 					<p:menubar styleClass="menu-sistema">
 						<p:submenu label="Cadastros">
 							<p:menuitem value="Clientes" />
-							<p:menuitem value="Usuários"/>
-							<p:separator />
-							<p:menuitem  value="Categorias"/>
-							<p:menuitem  value="Produtos" outcome="/produtos/PesquisaProdutos"/>
+							<p:menuitem value="Usuários" />
+							<p:separator/>
+							<p:menuitem value="Categorias" />
+							<p:menuitem value="Produtos" outcome="/produtos/PesquisaProdutos" />
 						</p:submenu>
-						
 						<p:submenu label="Pedidos">
-							<p:menuitem value="Novo Pedido" outcome="/pedidos/CadastroPedidos"/>
-							<p:menuitem value="Pesquisa" outcome="/pedidos/PesquisaPedidos"/>
+							<p:menuitem value="Novo pedido" outcome="/pedidos/CadastroPedidos" />
+							<p:menuitem value="Pesquisa" outcome="/pedidos/PesquisaPedidos" />
 						</p:submenu>
-						
-						<p:menuitem value="Sair" style="color: #ffffff !important;" />
+						<p:menuitem value="Sair" />
 					</p:menubar>
 				</h:form>
 			</div>
-			<div style="clear: both;"></div>
+			<div style="clear: both"></div>
 		</header>
 		
 		<div id="conteudo">
@@ -58,6 +58,7 @@
 		</div>
 		
 		<p:separator style="margin-top:20px;"/>
+		
 		<footer>
 			Curso Online de Sistemas Comerciais Java EE com CDI, JPA e PrimeFaces - <a href="http://www.google.com" target="_blank">AlgaWorks</a>
 		</footer>

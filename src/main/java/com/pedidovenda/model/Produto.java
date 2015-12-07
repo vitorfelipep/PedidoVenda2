@@ -9,6 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+import com.pedidovenda.validation.SKU;
 
 @Entity
 public class Produto implements Serializable {
@@ -21,7 +29,7 @@ public class Produto implements Serializable {
 	private BigDecimal valorUnitario;
 	private Integer quantidadeEstoque;
 	private Categoria categoria;
-	
+
 	@Id
 	@GeneratedValue
 	public Long getId() {
@@ -31,6 +39,9 @@ public class Produto implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	@NotBlank
+	@Size(max = 80)
 	@Column(nullable = false, length = 80)
 	public String getNome() {
 		return nome;
@@ -39,6 +50,8 @@ public class Produto implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	@NotBlank @SKU
 	@Column(nullable = false, length = 20, unique = true)
 	public String getSku() {
 		return sku;
@@ -47,7 +60,9 @@ public class Produto implements Serializable {
 	public void setSku(String sku) {
 		this.sku = sku;
 	}
-	@Column(name="valor_unitario", nullable = false, precision = 10, scale = 2)
+
+	@NotNull(message = "é obrigatório!")
+	@Column(name = "valor_unitario", nullable = false, precision = 10, scale = 2)
 	public BigDecimal getValorUnitario() {
 		return valorUnitario;
 	}
@@ -55,7 +70,11 @@ public class Produto implements Serializable {
 	public void setValorUnitario(BigDecimal valorUnitario) {
 		this.valorUnitario = valorUnitario;
 	}
-	@Column(name="quantidade_estoque", nullable = false, length = 5)
+
+	@NotNull
+	@Min(0)
+	@Max(9999)
+	@Column(name = "quantidade_estoque", nullable = false, length = 5)
 	public Integer getQuantidadeEstoque() {
 		return quantidadeEstoque;
 	}
@@ -63,6 +82,8 @@ public class Produto implements Serializable {
 	public void setQuantidadeEstoque(Integer quantidadeEstoque) {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
+
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "categoria_id", nullable = false)
 	public Categoria getCategoria() {
