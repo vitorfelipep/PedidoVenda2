@@ -1,4 +1,4 @@
-package br.com.pedidovenda.util.jpa;
+package com.pedidovenda.util.jpa;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;

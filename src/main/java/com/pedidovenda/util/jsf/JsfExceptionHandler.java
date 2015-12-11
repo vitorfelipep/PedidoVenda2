@@ -1,4 +1,4 @@
-package br.com.pedidovenda.util.jsf;
+package com.pedidovenda.util.jsf;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -17,7 +17,8 @@ import org.apache.commons.logging.LogFactory;
 
 
 
-import br.com.pedidovenda.service.NegocioException;
+
+import com.pedidovenda.service.NegocioException;
 
 public class JsfExceptionHandler extends ExceptionHandlerWrapper{
 	

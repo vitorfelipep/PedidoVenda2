@@ -1,4 +1,4 @@
-package br.com.pedidovenda.util.jsf;
+package com.pedidovenda.util.jsf;
 
 import javax.faces.context.ExceptionHandler;
 import javax.faces.context.ExceptionHandlerFactory;

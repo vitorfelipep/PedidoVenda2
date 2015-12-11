@@ -1,4 +1,4 @@
-package br.com.pedidovenda.util.cdi;
+package com.pedidovenda.util.cdi;
 
 import java.lang.annotation.Annotation;
 import java.util.Map;

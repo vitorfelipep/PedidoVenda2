@@ -9,12 +9,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 
-import br.com.pedidovenda.service.CadastroProdutoService;
-import br.com.pedidovenda.util.jsf.FacesUtil;
-
 import com.pedidovenda.model.Categoria;
 import com.pedidovenda.model.Produto;
 import com.pedidovenda.repository.Categorias;
+import com.pedidovenda.service.CadastroProdutoService;
+import com.pedidovenda.util.jsf.FacesUtil;
 
 @Named
 @ViewScoped

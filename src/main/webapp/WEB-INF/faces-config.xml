@@ -16,7 +16,7 @@
 	
 	<factory>
 		<exception-handler-factory>
-			br.com.pedidovenda.util.jsf.JsfExceptionHandlerFactory
+			com.pedidovenda.util.jsf.JsfExceptionHandlerFactory
 		</exception-handler-factory>
 	</factory>
 	

@@ -15,7 +15,7 @@ public class CategoriaConverter implements Converter {
 	private Categorias categorias;
 	
 	public CategoriaConverter() {
-		categorias = br.com.pedidovenda.util.cdi.CDIServiceLocator.getBean(Categorias.class);
+		categorias = com.pedidovenda.util.cdi.CDIServiceLocator.getBean(Categorias.class);
 	}
 	
 	@Override

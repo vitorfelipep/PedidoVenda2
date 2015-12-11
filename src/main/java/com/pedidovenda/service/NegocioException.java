@@ -1,4 +1,4 @@
-package br.com.pedidovenda.service;
+package com.pedidovenda.service;
 
 public class NegocioException extends RuntimeException{
 
