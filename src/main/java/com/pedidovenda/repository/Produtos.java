@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
@@ -14,8 +15,11 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import com.pedidovenda.model.Categoria;
 import com.pedidovenda.model.Produto;
 import com.pedidovenda.repository.filter.ProdutoFilter;
+import com.pedidovenda.service.NegocioException;
+import com.pedidovenda.util.jpa.Transactional;
 
 public class Produtos implements Serializable {
 
@@ -26,6 +30,17 @@ public class Produtos implements Serializable {
 
 	public Produto armazenar(Produto produto) {
 		return  produto = manager.merge(produto);
+	}
+	
+	@Transactional
+	public void remover(Produto produto){
+		try{
+			produto = porId(produto.getId());
+			manager.remove(produto);
+			manager.flush();
+		}catch(PersistenceException e){
+			throw new NegocioException("Produto não pode ser deletado pois já esta em uso em um pedido!");
+		}
 	}
 	
 	public Produto porSku(String sku) {
@@ -52,4 +67,9 @@ public class Produtos implements Serializable {
 		
 		return criteria.addOrder(Order.asc("nome")).list(); 
 	}
+
+	public Produto porId(Long id) {
+		return manager.find(Produto	.class, id);
+	}
+	
 }
