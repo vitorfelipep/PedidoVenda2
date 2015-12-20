@@ -1,22 +1,27 @@
 package com.pedidovenda.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.pedidovenda.model.Cliente;
 import com.pedidovenda.model.EnderecoEntrega;
 import com.pedidovenda.model.FormaPagamento;
+import com.pedidovenda.model.ItemPedido;
 import com.pedidovenda.model.Pedido;
+import com.pedidovenda.model.Produto;
 import com.pedidovenda.model.Usuario;
 import com.pedidovenda.repository.Clientes;
+import com.pedidovenda.repository.Produtos;
 import com.pedidovenda.repository.Usuarios;
 import com.pedidovenda.service.CadastroPedidoService;
 import com.pedidovenda.util.jsf.FacesUtil;
+import com.pedidovenda.validation.SKU;
 
 @Named
 @ViewScoped
@@ -26,64 +31,109 @@ public class CadastroPedidoBean implements Serializable {
 
 	@Inject
 	private Usuarios usuarios;
-
+	
 	@Inject
 	private Clientes clientes;
-
+	
+	@Inject
+	private Produtos produtos;
+	
 	@Inject
 	private CadastroPedidoService cadastroPedidoService;
-
-	private Pedido pedido;// Objeto pedido
-
+	
+	private String sku;
+	
+	private Pedido pedido;
 	private List<Usuario> vendedores;
-
+	
+	private Produto produtoLinhaEditavel;
+	
 	public CadastroPedidoBean() {
-
 		limpar();
 	}
-
+	
 	public void inicializar() {
 		if (FacesUtil.isNotPostBack()) {
-			vendedores = usuarios.vendedores();
+			this.vendedores = this.usuarios.vendedores();
+			
+			this.pedido.adicionarItemVazio();
 			
 			this.recalcularPedido();
 		}
 	}
-
+	
 	private void limpar() {
-		this.pedido = new Pedido();
+		pedido = new Pedido();
 		pedido.setEnderecoEntrega(new EnderecoEntrega());
 	}
-
+	
 	public void salvar() {
-		this.pedido = cadastroPedidoService.salvar(this.pedido);
-
+		this.pedido = this.cadastroPedidoService.salvar(this.pedido);
+		
 		FacesUtil.addInfoMesage("Pedido salvo com sucesso!");
 	}
 	
-	public void recalcularPedido(){
-		if(this.pedido != null){
+	public void recalcularPedido() {
+		if (this.pedido != null) {
 			this.pedido.recalcularValorTotal();
 		}
 	}
-
-	// autoComplete do cliente
-	public List<Cliente> completarCliente(String nome) {
-		return this.clientes.porNome(nome);
+	
+	public void carregarProdutoPorSku() {
+		if (StringUtils.isNotEmpty(this.sku)) {
+			this.produtoLinhaEditavel = this.produtos.porSku(this.sku);
+			this.carregarProdutoLinhaEditavel();
+		}
+	}
+	
+	public void carregarProdutoLinhaEditavel() {
+		ItemPedido item = this.pedido.getItemPedido().get(0);
+		
+		if (this.produtoLinhaEditavel != null) {
+			if (this.existeItemComProduto(this.produtoLinhaEditavel)) {
+				FacesUtil.addErrorMesage("Já existe um item no pedido com o produto informado.");
+			} else {
+				item.setProduto(this.produtoLinhaEditavel);
+				item.setValorUnitario(this.produtoLinhaEditavel.getValorUnitario());
+				
+				this.pedido.adicionarItemVazio();
+				this.produtoLinhaEditavel = null;
+				this.sku = null;
+				
+				this.pedido.recalcularValorTotal();
+			}
+		}
+	}
+	
+	private boolean existeItemComProduto(Produto produto) {
+		boolean existeItem = false;
+		
+		for (ItemPedido item : this.getPedido().getItemPedido()) {
+			if (produto.equals(item.getProduto())) {
+				existeItem = true;
+				break;
+			}
+		}
+		
+		return existeItem;
 	}
 
+	public List<Produto> completarProduto(String nome) {
+		return this.produtos.porNome(nome);
+	}
+	
 	public FormaPagamento[] getFormasPagamento() {
 		return FormaPagamento.values();
 	}
-
-	public boolean isEditando() {
-		return this.pedido.getId() != null;
+	
+	public List<Cliente> completarCliente(String nome) {
+		return this.clientes.porNome(nome);
 	}
 
 	public Pedido getPedido() {
 		return pedido;
 	}
-
+	
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
@@ -91,5 +141,25 @@ public class CadastroPedidoBean implements Serializable {
 	public List<Usuario> getVendedores() {
 		return vendedores;
 	}
+	
+	public boolean isEditando() {
+		return this.pedido.getId() != null;
+	}
 
+	public Produto getProdutoLinhaEditavel() {
+		return produtoLinhaEditavel;
+	}
+
+	public void setProdutoLinhaEditavel(Produto produtoLinhaEditavel) {
+		this.produtoLinhaEditavel = produtoLinhaEditavel;
+	}
+
+	@SKU
+	public String getSku() {
+		return sku;
+	}
+
+	public void setSku(String sku) {
+		this.sku = sku;
+	}
 }
