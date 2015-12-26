@@ -158,8 +158,7 @@ public class Pedido implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
-	
+
 	@Embedded
 	public EnderecoEntrega getEnderecoEntrega() {
 		return enderecoEntrega;
@@ -177,14 +176,14 @@ public class Pedido implements Serializable {
 	public void setItemPedido(List<ItemPedido> itemPedido) {
 		this.itemPedido = itemPedido;
 	}
-	
+
 	@Transient
-	public boolean isNovo(){
+	public boolean isNovo() {
 		return getId() == null;
 	}
-	
+
 	@Transient
-	public boolean isExistente(){
+	public boolean isExistente() {
 		return !isNovo();
 	}
 
@@ -212,45 +211,60 @@ public class Pedido implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 	@Transient
-	public BigDecimal getValorSubTotal(){
-		return this.getValorTotal().subtract(this.getValorFrete()).add(this.getValorDesconto()); 
+	public BigDecimal getValorSubTotal() {
+		return this.getValorTotal().subtract(this.getValorFrete())
+				.add(this.getValorDesconto());
 	}
-	
+
 	public void recalcularValorTotal() {
 		BigDecimal total = BigDecimal.ZERO;
-		
-		total = total.add(this.getValorFrete()).subtract(this.getValorDesconto());
-		
-		for(ItemPedido item : this.getItemPedido()){
-			if(item.getProduto() != null && item.getProduto().getId() != null){
+
+		total = total.add(this.getValorFrete()).subtract(
+				this.getValorDesconto());
+
+		for (ItemPedido item : this.getItemPedido()) {
+			if (item.getProduto() != null && item.getProduto().getId() != null) {
 				total = total.add(item.getValorTotal());
 			}
-			 
+
 		}
-		
+
 		this.setValorTotal(total);
 	}
 
 	public void adicionarItemVazio() {
-		
-		if(this.isOrcamento()){
-			
+
+		if (this.isOrcamento()) {
+
 			Produto produto = new Produto();
-			
+
 			ItemPedido item = new ItemPedido();
 			item.setQuantidade(1);
 			item.setProduto(produto);
 			item.setPedido(this);
-			
+
 			this.getItemPedido().add(0, item);
 		}
 	}
-	
+
 	@Transient
 	public boolean isOrcamento() {
 		return StatusPedido.ORCAMENTO.equals(this.getStatus());
+	}
+
+	public void removerItemVazio() {
+		ItemPedido primeiroItem = this.getItemPedido().get(0);
+
+		if (primeiroItem != null && primeiroItem.getProduto().getId() == null) {
+			this.getItemPedido().remove(0);
+		}
+	}
+
+	@Transient
+	public boolean isValorTotalNegativo() {
+		return this.getValorTotal().compareTo(BigDecimal.ZERO) < 0;
 	}
 
 }

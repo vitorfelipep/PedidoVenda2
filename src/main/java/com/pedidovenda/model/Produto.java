@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -19,6 +20,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.pedidovenda.validation.SKU;
 
 @Entity
+@Table(name="produto")
 public class Produto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
