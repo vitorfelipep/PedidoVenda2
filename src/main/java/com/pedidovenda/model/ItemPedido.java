@@ -104,5 +104,16 @@ public class ItemPedido implements Serializable {
 	public boolean isProdutoAssociado() {
 		return this.getProduto() != null && this.getProduto().getId() != null;
 	}
-
+	
+	
+	@Transient
+	public boolean isEstoqueSuficiente(){//Verifica se o estoque é suficiente.
+		return this.pedido.isEmitido() || this.getProduto().getId() == null
+				|| this.getProduto().getQuantidadeEstoque() >= this.getQuantidade(); 
+	}
+	
+	@Transient
+	public boolean isEstoqueInsuficiente(){//verifico a negativa do estoque suficiete, se não for suficiente então...
+		return !isEstoqueSuficiente();
+	}
 }

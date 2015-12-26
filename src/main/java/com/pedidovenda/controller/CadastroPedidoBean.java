@@ -3,6 +3,8 @@ package com.pedidovenda.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.event.Observes;
+import javax.enterprise.inject.Produces;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -43,7 +45,10 @@ public class CadastroPedidoBean implements Serializable {
 	
 	private String sku;
 	
+	@Produces
+	@PedidoEdicao
 	private Pedido pedido;
+	
 	private List<Usuario> vendedores;
 	
 	private Produto produtoLinhaEditavel;
@@ -77,6 +82,11 @@ public class CadastroPedidoBean implements Serializable {
 		} finally {
 			this.pedido.adicionarItemVazio();
 		}
+	}
+	
+	//Atualizar o pedido quando ele for emitido, para o novo status
+	public void pedidoAlterado(@Observes PedidoAlteradoEvent event){//Essa anotation observes do javax é o observador do evento que fará a atualização do novo objeto pedido.
+		this.pedido = event.getPedido();
 	}
 	
 	public void recalcularPedido() {
