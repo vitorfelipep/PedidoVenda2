@@ -281,4 +281,19 @@ public class Pedido implements Serializable {
 	private boolean isEmissivel() {
 		return this.isExistente() && this.isOrcamento();
 	}
+	
+	@Transient
+	public boolean isNaoCancelavel() {
+		return !isCancelavel();  
+	}
+	
+	@Transient
+	private boolean isCancelavel() {
+		return this.isExistente() && !this.isCancelado();
+	}
+	
+	@Transient
+	private boolean isCancelado() { 
+		return StatusPedido.CANCELADO.equals(this.getStatus());
+	}
 }

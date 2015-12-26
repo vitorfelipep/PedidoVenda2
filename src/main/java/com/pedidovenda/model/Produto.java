@@ -21,7 +21,7 @@ import com.pedidovenda.service.NegocioException;
 import com.pedidovenda.validation.SKU;
 
 @Entity
-@Table(name="produto")
+@Table(name = "produto")
 public class Produto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -54,7 +54,8 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
-	@NotBlank @SKU
+	@NotBlank
+	@SKU
 	@Column(nullable = false, length = 20, unique = true)
 	public String getSku() {
 		return sku;
@@ -124,13 +125,17 @@ public class Produto implements Serializable {
 
 	public void baixarEstoque(Integer quantidade) {
 		int novaQuantidade = this.getQuantidadeEstoque() - quantidade;
-		
-		if(novaQuantidade < 0){
+
+		if (novaQuantidade < 0) {
 			throw new NegocioException("Não há disponibilidade no estoque de "
 					+ quantidade + " itens do produto " + this.getSku() + ".");
 		}
-		
+
 		this.setQuantidadeEstoque(novaQuantidade);
+	}
+
+	public void adicionarEstoque(Integer quantidade) {
+		this.setQuantidadeEstoque(quantidadeEstoque + quantidade);
 	}
 
 }
