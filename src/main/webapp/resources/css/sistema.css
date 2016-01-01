@@ -124,3 +124,7 @@ h1{
 }
 
 /*Customiza tabView - Fim*/
+
+.ui-state-disabled {
+	opacity: .80 !important;
+}

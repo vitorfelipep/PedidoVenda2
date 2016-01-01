@@ -68,6 +68,23 @@
 			<scope>compile</scope>
 		</dependency>
 		
+		<!-- Abstração para envio de emails -->
+		<dependency>
+			<groupId>com.outjected</groupId>
+			<artifactId>simple-email</artifactId>
+			<version>0.2.1</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<!-- Requerido para envio de emails -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		
 		<!-- Jar do javax.servlet que suporta annotation (Importante)  -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

@@ -7,7 +7,7 @@
 
 	<p:dataTable value="#{cadastroPedidoBean.pedido.itemPedido}" var="item"
 		id="tabelaItens" rowIndexVar="linha">
-		
+
 		<p:column headerText="SKU" style="text-align: center; width:100px">
 			<h:outputText size="8" id="skuRender" value="#{item.produto.sku}"
 				rendered="#{item.produtoAssociado}" />
@@ -45,23 +45,24 @@
 
 		<p:column headerText="Quantidade"
 			style="text-align: right; width:120px;">
-			<p:inputText size="8" value="#{item.quantidade}">
-				<p:ajax event="change" process="@this" 
-				update="tabelaItens :frmCadastro:totalPedido :frmCadastro:subtotal" 
-				listener="#{cadastroPedidoBean.atualizarQuantidade(item, linha)}"/> 
+			<p:inputText size="8" value="#{item.quantidade}"
+				disabled="#{cadastroPedidoBean.pedido.naoAlteravel}">
+				<p:ajax event="change" process="@this"
+					update="tabelaItens :frmCadastro:totalPedido :frmCadastro:subtotal"
+					listener="#{cadastroPedidoBean.atualizarQuantidade(item, linha)}" />
 			</p:inputText>
 		</p:column>
 
 		<p:column headerText="Estoque"
 			style="text-align: center; width:100px;">
-			
-			<h:outputText value="#{item.produto.quantidadeEstoque}" 
-				style="#{item.estoqueInsuficiente ? 'color:red' : ''}"/>
-				
+
+			<h:outputText value="#{item.produto.quantidadeEstoque}"
+				style="#{item.estoqueInsuficiente ? 'color:red' : ''}" />
+
 			<p:graphicImage library="imagens" name="alerta.png" id="semestoque"
 				style="vertical-align: bottom; margin-left: 5px;"
-				rendered="#{item.estoqueInsuficiente}"/>
-				
+				rendered="#{item.estoqueInsuficiente}" />
+
 			<p:tooltip for="semestoque" value="Estoque insuficiente!"
 				rendered="#{item.estoqueInsuficiente}" />
 		</p:column>
