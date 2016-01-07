@@ -19,7 +19,8 @@
     				process="@this" update="@form" disabled="#{cadastroPedidoBean.pedido.naoCancelavel}" >
     				<p:confirm header="Confirmação" message="Você têm certeza que deseja cancelar este pedido?" icon="ui-icon-alert"/>	
     			</p:commandButton>
-    			<p:commandButton value="Enviar por E-mail" />
+    			<p:commandButton value="Enviar por E-mail" action="#{envioEmailPedidoBean.enviarPedido}" 
+    				process="@this" disabled="#{cadastroPedidoBean.pedido.naoEnviavelPorEmail}"/>  
     			
     			<p:separator />
     			

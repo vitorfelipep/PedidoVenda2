@@ -1,4 +1,4 @@
-package com.pedidovenda.util.mail;
+	package com.pedidovenda.util.mail;
 
 import java.io.IOException;
 import java.util.Properties;
