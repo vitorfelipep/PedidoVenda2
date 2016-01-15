@@ -17,7 +17,7 @@ import com.pedidovenda.util.cdi.CDIServiceLocator;
 
 public class AppUserDetailsService implements UserDetailsService{
 
-	@Override
+	@Override 
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		Usuarios usuarios = CDIServiceLocator.getBean(Usuarios.class);
 		Usuario usuario = usuarios.porEmail(email);

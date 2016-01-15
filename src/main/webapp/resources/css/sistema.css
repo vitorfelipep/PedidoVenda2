@@ -6,6 +6,7 @@ body{
 	font:arial, Helvetica, Sans-serif;
 	margin: 0px;
 	font-weight: normal;
+	background-color: hsla(0, 0%, 45%, 0.07);
 	
 }
 
@@ -65,7 +66,7 @@ h1{
 
 .gridLogin{
 	
-	background-color: #f2f2f2;
+	background-color: #f4fbf8;
 	border-radius: 8px;
 	border: 1px solid #ccc;
 	margin-top: 8px;
